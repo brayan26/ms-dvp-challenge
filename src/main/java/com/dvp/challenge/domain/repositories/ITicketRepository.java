@@ -14,4 +14,6 @@ public interface ITicketRepository {
    Ticket findById(String id);
 
    List<Ticket> find(int page, int size);
+
+   List<Ticket> findByStateOrUser(String state, String userId);
 }

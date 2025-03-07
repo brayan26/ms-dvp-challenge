@@ -5,6 +5,7 @@ import com.dvp.challenge.infrastructure.orm.entities.Status;
 import com.dvp.challenge.infrastructure.orm.entities.TicketEntity;
 import com.dvp.challenge.infrastructure.orm.entities.UserEntity;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class TicketMapper {
@@ -22,11 +23,13 @@ public class TicketMapper {
    }
 
    public static TicketEntity toEntity(Ticket source) {
+      LocalDateTime now = LocalDateTime.now();
       return new TicketEntity(
             UUID.randomUUID().toString(),
             source.description(),
             Status.valueOf(source.status()),
-            source.createdAt(), source.updatedAt(),
+            now,
+            now,
             new UserEntity(source.userId())
       );
    }

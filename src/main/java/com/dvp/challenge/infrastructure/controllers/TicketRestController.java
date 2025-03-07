@@ -47,4 +47,11 @@ public class TicketRestController {
    public ResponseEntity<?> findById(@PathVariable String id) {
       return ResponseEntity.ok(this.ticketServiceHandler.findById(id));
    }
+
+   @GetMapping(value = "/findByStatusOrUser", produces = {"application/json"})
+   public ResponseEntity<?> findByStatusOrUser(
+         @RequestParam(value = "status", required = false) String status,
+         @RequestParam(value = "userId", required = false) String userId) {
+      return ResponseEntity.ok(this.ticketServiceHandler.findByStatusOrUserId(status, userId));
+   }
 }

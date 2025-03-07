@@ -5,6 +5,7 @@ import com.dvp.challenge.infrastructure.errors.TicketError;
 import com.dvp.challenge.domain.repositories.ITicketRepository;
 import com.dvp.challenge.infrastructure.exceptions.GenericNotFoundException;
 import com.dvp.challenge.infrastructure.mapper.TicketMapper;
+import com.dvp.challenge.infrastructure.orm.entities.Status;
 import com.dvp.challenge.infrastructure.orm.entities.TicketEntity;
 import com.dvp.challenge.infrastructure.orm.repositories.JpaTicketRepository;
 import lombok.RequiredArgsConstructor;
@@ -66,6 +67,29 @@ public class TicketRepositoryImpl implements ITicketRepository {
    public List<Ticket> find(int page, int size) {
       Pageable pageable = PageRequest.of(page, size);
       return this.jpaTicketRepository.findAll(pageable)
+            .stream()
+            .map(TicketMapper::toDomain)
+            .toList();
+   }
+
+   @Override
+   public List<Ticket> findByStateOrUser(String state, String userId) {
+      if (state == null && userId == null) {
+         return List.of();
+      }
+      if (state != null && userId != null) {
+         return this.jpaTicketRepository.findByStateAndUserId(Status.valueOf(state.toUpperCase()), userId)
+               .stream()
+               .map(TicketMapper::toDomain)
+               .toList();
+      }
+      if (state != null) {
+         return this.jpaTicketRepository.findByState(Status.valueOf(state.toUpperCase()))
+               .stream()
+               .map(TicketMapper::toDomain)
+               .toList();
+      }
+      return this.jpaTicketRepository.findByUserId(userId)
             .stream()
             .map(TicketMapper::toDomain)
             .toList();

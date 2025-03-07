@@ -4,6 +4,7 @@ import com.dvp.challenge.application.ticket.create.TicketCreator;
 import com.dvp.challenge.application.ticket.delete.TicketEraser;
 import com.dvp.challenge.application.ticket.search.FindAllTicketsPaged;
 import com.dvp.challenge.application.ticket.search.FindTicketById;
+import com.dvp.challenge.application.ticket.search.FindTicketByStateOrUserId;
 import com.dvp.challenge.application.ticket.update.TicketUpdater;
 import com.dvp.challenge.domain.Ticket;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ public class TicketServiceHandler {
    private final FindAllTicketsPaged findAllTicketsPagedUseCase;
    private final FindTicketById findTicketByIdUseCase;
    private final TicketEraser ticketEraserUseCase;
+   private final FindTicketByStateOrUserId findTicketByStateOrUserIdUseCase;
 
    public Ticket create(Ticket dto) {
       return this.ticketCreatorUseCase.run(dto);
@@ -38,5 +40,9 @@ public class TicketServiceHandler {
 
    public List<Ticket> findAll(int page, int size) {
       return this.findAllTicketsPagedUseCase.run(page, size);
+   }
+
+   public List<Ticket> findByStatusOrUserId(String status, String userId) {
+      return this.findTicketByStateOrUserIdUseCase.run(status, userId);
    }
 }

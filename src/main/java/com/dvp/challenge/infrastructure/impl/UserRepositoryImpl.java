@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -56,7 +55,7 @@ public class UserRepositoryImpl implements IUserRepository {
    public List<User> find() {
       return this.jpaUserRepository.findAll().stream()
             .map(UserMapper::toDomain)
-            .collect(Collectors.toList());
+            .toList();
    }
 
    @Override
