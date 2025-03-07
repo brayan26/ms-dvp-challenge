@@ -1,0 +1,20 @@
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    generate-ddl: true
+  datasource:
+    url: jdbc:h2:mem:test
+    username: root
+    password: 1122q!
+    driver-class-name: org.h2.Driver
+    platform: h2
+
+app:
+  jwtSecret: cdb7778b7ecf41ca88354f4b6cddc6c0cdb7778b7ecf41ca88354f4b6cddc6c0!
+  jwtExpirationMs: 3600000
+  timezone: America/Bogota
+  init-sql: INSERT INTO AuthEntity (id,username,password) VALUES (?1,?2,?3)
