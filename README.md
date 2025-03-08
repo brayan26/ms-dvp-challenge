@@ -44,6 +44,16 @@ Hexagonal architecture + DDD + Solid principles + Design patterns (Mother Object
 ![img_1.png](img_1.png)
 
 ## Run
+Run application using Docker
+
+```
+build: docker build -t dvp/ms-challenge .
+```
+
+```
+run: docker run -d -p 8001:8001 --restart=always --name ms-dvp-challenge dvp/ms-challeng  
+```
+
 Run application using maven
 
 **NOTE: if you use Linux or Mac exec ./mvnw, for windows ./mvnw.cmd**
