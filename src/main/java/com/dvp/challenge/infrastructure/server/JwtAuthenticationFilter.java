@@ -31,6 +31,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
    private static final String HEALTH_URL_PREFIX = "/info";
    private static final String LOGIN_URL_PREFIX = "/doLogin";
    private static final String ACTUATOR_URL_PREFIX = "/actuator";
+   private static final String SWAGGER_URL_PREFIX = "swagger";
+   private static final String API_SWAGGERL_PREFIX = "api-docs";
    private static final String H2_URL_PREFIX = "/h2";
 
    @Autowired
@@ -44,6 +46,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
       UsernamePasswordAuthenticationToken authentication;
 
       if (urlRequest.contains(HEALTH_URL_PREFIX) || urlRequest.contains(LOGIN_URL_PREFIX)
+            || urlRequest.contains(SWAGGER_URL_PREFIX) || urlRequest.contains(API_SWAGGERL_PREFIX)
             || urlRequest.contains(H2_URL_PREFIX) || urlRequest.contains(ACTUATOR_URL_PREFIX)) {
          List<GrantedAuthority> grantedAuths = AuthorityUtils
                .commaSeparatedStringToAuthorityList("public");

@@ -36,8 +36,8 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
    }
 
    @ExceptionHandler(Exception.class)
-   public ResponseEntity<?> internalServerError(GenericBadRequestException ex, WebRequest request) {
-      log.error(ex.getMessage());
-      return new ResponseEntity<>(ex.getError(), HttpStatus.INTERNAL_SERVER_ERROR);
+   public ResponseEntity<?> internalServerError(Exception ex, WebRequest request) {
+      log.error("<ControllerAdvice> Unexpected error: {}", ex.getMessage());
+      return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
    }
 }
