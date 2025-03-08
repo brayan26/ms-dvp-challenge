@@ -51,9 +51,16 @@ build: docker build -t dvp/ms-challenge .
 ```
 
 ```
-run: docker run -d -p 8001:8001 --restart=always --name ms-dvp-challenge dvp/ms-challeng  
+run: docker run -d -p 8001:8001 --restart=always --name ms-dvp-challenge dvp/ms-challenge  
 ```
 
+## API Execution
+Import postman collection
+
+```
+file: ./dvp-challenge.postman_collection.json
+```
+![img.png](img.png)
 Run application using maven
 
 **NOTE: if you use Linux or Mac exec ./mvnw, for windows ./mvnw.cmd**
