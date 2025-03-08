@@ -73,6 +73,7 @@ public class TicketRepositoryImpl implements ITicketRepository {
    }
 
    @Override
+   @Transactional(readOnly = true)
    public List<Ticket> findByStateOrUser(String state, String userId) {
       if (state == null && userId == null) {
          return List.of();
